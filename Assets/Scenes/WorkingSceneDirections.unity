@@ -23528,7 +23528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonClickActions:
   - Title: Synchronize
-    Button: 16384
+    Button: 2113536
     ButtonMode: 0
     Callback:
       m_PersistentCalls:
@@ -23546,7 +23546,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - Title: Shoot
-    Button: 8192
+    Button: 2105344
     ButtonMode: 0
     Callback:
       m_PersistentCalls:

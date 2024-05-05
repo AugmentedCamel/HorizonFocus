@@ -12,7 +12,11 @@ public class GameNorth : MonoBehaviour
     {
         
     }
-
+    
+    public float NorthDirectionYAngle()
+    {
+        return gameNorth.rotation.eulerAngles.y;
+    }
     // Update is called once per frame
     void Update()
     {
