@@ -26,6 +26,14 @@ public class ControllerActive : MonoBehaviour
             }
         }
     }
+    
+    public void DeactivateAllControllers()
+    {
+        foreach (var controller in _controllers)
+        {
+            controller.SetActive(false);
+        }
+    }
 
     // Update is called once per frame
     void Update()

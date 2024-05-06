@@ -10,7 +10,7 @@ public class SyncronizeGame : MonoBehaviour
     
     [SerializeField] private GameNorth _gameNorth;
     [SerializeField] private ControllerDirection _controllerDirection;
-    
+    [SerializeField] private GameObject _horizonFocusTarget;
     public UnityEvent OnSyncGame;
     
     // Start is called before the first frame update
@@ -23,6 +23,14 @@ public class SyncronizeGame : MonoBehaviour
         if (_syncronizingGame)
         {
             _gameNorth.gameObject.transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+    }
+    
+    public void SetAimHorizonFocus(float angle)
+    {
+        if (!_syncronizingGame)
+        {
+            _horizonFocusTarget.transform.rotation = Quaternion.Euler(0, angle, 0);
         }
     }
     
@@ -43,6 +51,7 @@ public class SyncronizeGame : MonoBehaviour
             if (_controllerDirection != null)
             {
                 SetNorthRotation(_controllerDirection.controllerDirectionYAngle);
+                SetAimHorizonFocus(_controllerDirection.controllerDirectionYAngle);
             }
 
         }

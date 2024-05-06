@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,15 +12,51 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TargetGenerator _targetGenerator;
     [SerializeField] private DesiredAngleController _desiredAngleController;
     [SerializeField] private TextUpdater _textUpdater;
+    [SerializeField] private SceneActivator _sceneActivator;
+    [SerializeField] private PoleManager _poleManager;
     // Start is called before the first frame update
     
     public int turnCounter = 0;
-    
+    private bool _isCoordinated = false;
     void Start()
+    {
+        
+        //start with cordinating game
+        //StartCoordinatingGame();
+        //StartSyncGame();
+    }
+    
+    
+    public void StartCoordinatingGame() //happens after spawning of all MRUK objects
+    {
+        _isCoordinated = false;
+        _controllerActive.DeactivateAllControllers();
+        _sceneActivator.ActivateObjectsOne();
+        Invoke("SetPoleActive", 3); //delay so that the all th scene objecst can spawn?
+        
+
+    }
+
+    private void SetPoleActive()
+    {
+        _poleManager.SetPoleActive();
+    }
+    
+    public void OnGameCoordinated()
+    {
+        if (!_isCoordinated)
+        {
+            _isCoordinated = true;
+            StartSyncGame();
+        }
+        
+    }
+    public void StartSyncGame()
     {
         _syncronizeGame._syncronizingGame = true;
         _controllerActive.ChangeControllerToActive(0);
-        //start with syncing the game
+        _sceneActivator.ActivateObjectsTwo();
+        
     }
     
     public void OnSyncGame()
