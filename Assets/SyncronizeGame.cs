@@ -7,16 +7,23 @@ using UnityEngine.Events;
 public class SyncronizeGame : MonoBehaviour
 {
     public bool _syncronizingGame = false;
-    
+    public bool _isAiming = false;
     [SerializeField] private GameNorth _gameNorth;
     [SerializeField] private ControllerDirection _controllerDirection;
     [SerializeField] private GameObject _horizonFocusTarget;
     public UnityEvent OnSyncGame;
     
+    [SerializeField] private List<GameObject> _cityHorizonTargets;
+    private GameObject _currentCityHorizonTarget;
+    
     // Start is called before the first frame update
     void Start()
     {
+        foreach (var VARIABLE in _cityHorizonTargets)
+        {
+            VARIABLE.SetActive(false);
         
+        }
     }
     public void SetNorthRotation(float angle)
     {
@@ -32,6 +39,36 @@ public class SyncronizeGame : MonoBehaviour
         {
             _horizonFocusTarget.transform.rotation = Quaternion.Euler(0, angle, 0);
         }
+    }
+    
+    private void UpdateAimHorizonTarget(float angle)
+    {
+        if (_currentCityHorizonTarget != null)
+        {
+            _currentCityHorizonTarget.transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+
+    }
+    
+    public void SetCityHorizonTarget(int index)
+    {
+        if (index < _cityHorizonTargets.Count)
+        {
+            _currentCityHorizonTarget = _cityHorizonTargets[index];
+            _currentCityHorizonTarget.SetActive(true);
+            _isAiming = true;
+        }
+        
+    }
+    
+    public void SaveCityHorizonTarget()
+    {
+        if (_currentCityHorizonTarget != null)
+        {
+            _currentCityHorizonTarget = null;
+            _isAiming = false;
+        }
+        
     }
     
     public void SaveNorthDirection()
@@ -55,5 +92,15 @@ public class SyncronizeGame : MonoBehaviour
             }
 
         }
+        
+        if (_isAiming)
+        {
+            if (_controllerDirection != null)
+            {
+                UpdateAimHorizonTarget(_controllerDirection.controllerDirectionYAngle);
+            }
+        }
+        
+        
     }
 }
