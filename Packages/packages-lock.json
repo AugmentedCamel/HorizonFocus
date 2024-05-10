@@ -143,6 +143,14 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.occasoftware.outline-objects": {
+      "version": "file:com.occasoftware.outline-objects",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "14.0.7"
+      }
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.4",
       "depth": 2,
