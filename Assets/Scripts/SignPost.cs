@@ -69,7 +69,7 @@ public class SignPost : MonoBehaviour
         }
     }
     
-    public void Save(float correctLocalAngle)
+    public void Save(float correctLocalAngle) 
     {
         _isSaved = true;
         _renderer.material = _materialShot;

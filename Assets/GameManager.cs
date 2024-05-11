@@ -44,7 +44,9 @@ public class GameManager : MonoBehaviour
         _sceneActivator.ActivateObjectsOne();
         Invoke("SetPoleActive", 2); //delay so that the all th scene objecst can spawn?
         
-
+        //activate the user input module 
+        
+    
     }
 
     private void SetPoleActive()
