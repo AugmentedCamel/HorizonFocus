@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ControllerActive _controllerActive;
     [SerializeField] private TargetGenerator _targetGenerator;
     [SerializeField] private DesiredAngleController _desiredAngleController;
-    [SerializeField] private TextUpdater _textUpdater;
+   
     [SerializeField] private SceneActivator _sceneActivator;
     [SerializeField] private PoleManager _poleManager;
     [SerializeField] private SignPostController _signPostController;
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         
             //calculating the score:
             _desiredAngleController.SetTargetAngle(newTarget);
-            _textUpdater.UpdateTargetText(newTargetstring);
+            
         }
         else if (turnCounter < 8) // should have medium targets
         {
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
             
             //calculating the score:
             _desiredAngleController.SetTargetAngle(newTarget);
-            _textUpdater.UpdateTargetText(newTargetstring);
+            
         }
         
         
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         
         
         turnCounter++;
-        _textUpdater.UpdateScoreText((int)score);
+        
         AddScore(score);
         
         //should save the arrow 
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         {
             scoreaddition -= (scoreaddition * 2); //inversing the negative number
         }
-        _textUpdater.UpdateScoreText(scoreaddition);
+        
         totalScore += scoreaddition;
         
         _visualScoreController.SetVisualScore(scoreaddition);
